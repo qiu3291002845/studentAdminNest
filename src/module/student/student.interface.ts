@@ -12,21 +12,19 @@ export class StudentDto {
   })
   sex: string;
   @ApiProperty({
-    example: 19,
+    example: "19",
     required: true
   })
-  age: number;
+  age: string;
   @ApiProperty({
     example: "2000-01-01"
   })
-  birthday: number;
+  birthday: string;
   @ApiProperty({
     example: "1304212000XXXXXXXX",
     required: true,
-    minLength: 18,
-    maxLength: 18
   })
-  idCard: number;
+  idCard: string;
   @ApiProperty({
     required: true,
     example: "河北省邯郸市丛台区"
@@ -34,12 +32,32 @@ export class StudentDto {
   homeAddress: string;
   @ApiProperty({
     required: true,
-    example: 1903
+    example: "1903"
   })
-  class: number;
+  class: string;
   @ApiProperty({
     required: true,
     example: "信息工程系"
   })
   system: string;
+  @ApiProperty({
+    required: true,
+    example: "xxxxx@qq.com"
+  })
+  email: string;
+  @ApiProperty({
+    required: true,
+    example: "群众"
+  })
+  political: string
+  @ApiProperty({
+    required: true,
+    example: "15100404109"
+  })
+  phone: number;
+  @ApiProperty({
+    required: true,
+    example: "汉族"
+  })
+  nation: string
 }

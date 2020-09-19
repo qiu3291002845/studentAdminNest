@@ -14,7 +14,7 @@ export class Student {
     example: 19
   })
   @prop({ required: true })
-  age: number
+  age: string
 
   @ApiProperty({
     description: "性别",
@@ -36,8 +36,6 @@ export class Student {
   })
   @prop({
     required: true,
-    min: 18,
-    max: 18
   })
   idCard: string
 
@@ -49,11 +47,29 @@ export class Student {
   homeAddress: string
 
   @ApiProperty({
+    description: '手机号码',
+    example: "15100404109",
+  })
+  @prop({
+    required: true,
+  })
+  phone: string
+
+  @ApiProperty({
+    description: '民族',
+    example: '汉族',
+  })
+  @prop({
+    required: true,
+  })
+  nation: string
+
+  @ApiProperty({
     description: '班级',
-    example: 1903,
+    example: "1903",
   })
   @prop({ required: true })
-  class: number
+  class: string
 
   @ApiProperty({
     description: '系别',
@@ -61,6 +77,20 @@ export class Student {
   })
   @prop({ required: true })
   system: string
+
+  @ApiProperty({
+    description: '电子邮箱',
+    example: '1628814161@qq.com',
+  })
+  @prop({ required: true })
+  email: string
+
+  @ApiProperty({
+    description: '政治面貌',
+    example: '群众',
+  })
+  @prop({ required: true })
+  political: string
 
   @ApiProperty({
     description: '创建日期',

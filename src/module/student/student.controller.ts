@@ -1,19 +1,84 @@
 import { StudentService } from './student.service';
 import { StudentDto } from './student.interface';
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
-import { ApiBody, ApiParam, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { ApiBody, ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger';
 
 @Controller('student')
 export class StudentController {
   constructor(private studentService: StudentService) { }
   @ApiTags("查询所有学生")
   @Get()
-  async find() {
-    const res = await this.studentService.find()
+  @ApiQuery({
+    name: 'count',
+    description: "页码 例如: 1",
+    required: false,
+    type: Number
+  })
+  @ApiQuery({
+    name: 'pageSize',
+    description: "页大小 例如: 6",
+    required: false,
+    type: Number,
+  })
+  @ApiQuery({
+    name: 'sort',
+    description: "排序 例如: 1",
+    required: false,
+    type: Number
+  })
+  async find(@Query() { count, sort, pageSize }) {
+    if (pageSize && count) {
+      const res = await this.studentService.find({ sort, count: (count - 1) * pageSize, pageSize })
+      return {
+        message: "success",
+        statusCode: 200,
+        data: res,
+        total: res.length
+      }
+    } else {
+      const res = await this.studentService.find({ sort })
+      return {
+        message: "success",
+        statusCode: 200,
+        data: res,
+        total: res.length
+      }
+    }
+
+  }
+  @ApiTags("搜索学生")
+  @Get('/search')
+  @ApiQuery({
+    name: "keyword",
+    description: "搜素关键字",
+    required: true,
+    type: String
+  })
+  @ApiQuery({
+    name: 'count',
+    description: "页码 例如: 1",
+    required: false,
+    type: Number,
+  })
+  @ApiQuery({
+    name: 'pageSize',
+    description: "页大小 例如: 6",
+    required: false,
+    type: Number,
+  })
+  @ApiQuery({
+    name: 'sort',
+    description: "排序 例如: 1",
+    required: false,
+    type: Number
+  })
+  async search(@Query() { keyword, pageSize, sort, count}) {
+    const res = await this.studentService.search({ keyword, count: (count - 1) * pageSize, pageSize, sort })
     return {
       message: "success",
       statusCode: 200,
       data: res,
+      total: res.length
     }
   }
 
@@ -21,11 +86,10 @@ export class StudentController {
   @Get('/:id')
   @ApiParam({
     name: 'id',
-    example: '5f656e0f0d83378548c701f9',
     description: '请输入学生ID'
   })
   async findId(@Param('id') id: string) {
-    const res = await this.studentService.find(id);
+    const res = await this.studentService.find({ id });
     return {
       message: "success",
       statusCode: 200,
@@ -47,7 +111,6 @@ export class StudentController {
   @Put("/:id")
   @ApiParam({
     name: 'id',
-    example: '5f656e0f0d83378548c701f9',
     description: '请输入学生ID'
   })
   async update(@Param('id') id: string, @Body() studentDto: StudentDto) {
@@ -62,7 +125,6 @@ export class StudentController {
   @Delete('/:id')
   @ApiParam({
     name: 'id',
-    example: '5f656e0f0d83378548c701f9',
     description: '请输入学生ID'
   })
   async delete(@Param('id') id: string) {
