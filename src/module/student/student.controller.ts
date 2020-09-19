@@ -10,20 +10,24 @@ export class StudentController {
   @Get()
   @ApiQuery({
     name: 'count',
+    enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     description: "页码 例如: 1",
     required: false,
     type: Number
   })
   @ApiQuery({
     name: 'pageSize',
+    enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     description: "页大小 例如: 6",
     required: false,
     type: Number,
   })
   @ApiQuery({
     name: 'sort',
+    enum: [1, -1],
+    example: 1,
     description: "排序 例如: 1",
-    required: false,
+    required: true,
     type: Number
   })
   async find(@Query() { count, sort, pageSize }) {
@@ -56,23 +60,25 @@ export class StudentController {
   })
   @ApiQuery({
     name: 'count',
-    description: "页码 例如: 1",
+    enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     required: false,
     type: Number,
   })
   @ApiQuery({
     name: 'pageSize',
-    description: "页大小 例如: 6",
+    enum: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     required: false,
     type: Number,
   })
   @ApiQuery({
     name: 'sort',
+    enum: [1, -1],
+    example: 1,
     description: "排序 例如: 1",
     required: false,
     type: Number
   })
-  async search(@Query() { keyword, pageSize, sort, count}) {
+  async search(@Query() { keyword, pageSize, sort, count }) {
     const res = await this.studentService.search({ keyword, count: (count - 1) * pageSize, pageSize, sort })
     return {
       message: "success",

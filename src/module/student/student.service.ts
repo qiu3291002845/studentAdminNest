@@ -15,20 +15,19 @@ export class StudentService {
   }) {
     if (id === undefined) {
       if (pageSize == 0) {
-        return await this.Student.find().sort({ time: sort });
+        return await this.Student.find().sort({ time: sort }).populate('Student');
       } else {
         return await this.Student.find().sort({ time: sort }).limit(pageSize * 1).skip(count * 1);
       }
     }
     else {
-      console.log(2)
       return await this.Student.findOne({ _id: id });
     }
   }
   async create(json: StudentDto) {
     await this.Student.create(json);
   }
-  async update(id: string, json) {
+  async update(id: string, json: StudentDto) {
     await this.Student.updateOne({ _id: id, }, json)
   }
   async delete(id: string) {
@@ -47,6 +46,7 @@ export class StudentService {
       return await this.Student.find({
         $or: [
           { "name": query },
+          { "class": query },
           { "age": query },
           { "sex": query },
           { "birthday": query },
@@ -76,6 +76,7 @@ export class StudentService {
           { "nation": query },
           { "political": query },
           { "email": query },
+          { "class": query },
         ]
       }).sort({
         'time': sort

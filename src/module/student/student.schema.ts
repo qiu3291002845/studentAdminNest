@@ -1,3 +1,4 @@
+import { professionScore, usallyScore } from './student.interface';
 import { ApiProperty } from "@nestjs/swagger";
 import { prop } from "@typegoose/typegoose";
 
@@ -66,7 +67,7 @@ export class Student {
 
   @ApiProperty({
     description: '班级',
-    example: "1903",
+    example: '1903',
   })
   @prop({ required: true })
   class: string
@@ -98,4 +99,27 @@ export class Student {
   })
   @prop({ default: Date.now() })
   time: string
+
+  @ApiProperty({
+    required: true,
+    example: [
+      {
+        time: "1654503123123",
+        type: 1,
+        fraction: 5,
+        description: "上课搞基"
+      }
+    ],
+    description: "平时成绩"
+  })
+  @prop({ required: true })
+  usallyScore: Array<usallyScore>
+
+  @ApiProperty({
+    required: true,
+    example: [{ quality: 60, fullStack: 50 }],
+    description: "专业成绩"
+  })
+  @prop({ required: true })
+  professionScore: Array<professionScore>
 }
