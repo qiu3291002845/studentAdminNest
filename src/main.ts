@@ -11,6 +11,8 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '../src/', 'public'), {
     // prefix: '/static/'
   })
+  // 允许跨域
+  app.enableCors()
   const options = new DocumentBuilder()
     .setTitle('学生管理系统')
     .setDescription('——来自1903的团队')
