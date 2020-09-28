@@ -59,4 +59,11 @@ export class User {
     default: "5f70b66c3657de5f58240fba"
   })
   role: Ref<Role>
+
+  @ApiProperty({
+    description: '创建日期',
+    example: '1600481965663',
+  })
+  @prop({ default: Date.now() })
+  time: string
 }
