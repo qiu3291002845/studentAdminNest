@@ -30,6 +30,13 @@ export class UserDto {
   name: string
 
   @ApiProperty({
+    description: "电子邮箱",
+    required: true,
+    example:"123@qq.com"
+  })
+  email: string
+
+  @ApiProperty({
     description: '用户权限',
     example: "5f70b66c3657de5f58240fba"
   })

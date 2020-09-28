@@ -40,6 +40,7 @@ export class RoleController {
     }
   }
 
+  @ApiTags("删除角色")
   @Delete("/:id")
   @ApiParam({
     name: "id",

@@ -8,7 +8,7 @@ export class User {
     description: "用户名"
   })
   @prop({
-    required: true
+    required: true,
   })
   username: string
 
@@ -40,6 +40,15 @@ export class User {
   })
   @prop()
   name: string
+
+  @ApiProperty({
+    description: "电子邮箱",
+    required: true
+  })
+  @prop({
+    required: true,
+  })
+  email: string
 
   @ApiProperty({
     description: '用户权限',
