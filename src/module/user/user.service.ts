@@ -27,10 +27,10 @@ export class UserService {
     }
   }
   async update(id, json) {
-    await this.User.update({ _id: id }, json);
+    await this.User.updateOne({ _id: id }, json);
   }
   async delete(id) {
-    await this.User.delete({ _id: id })
+    await this.User.deleteOne({ _id: id })
   }
   async updatePass(id, pass) {
     await this.User.updateOne({ _id: id }, { password: pass })
