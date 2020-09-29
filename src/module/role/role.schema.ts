@@ -29,7 +29,12 @@ export class Role {
   @ApiProperty({
     description: "角色权限"
   })
-  @prop({required:true,type:Number})
+  @prop(
+    {
+      require: true,
+      type: Number
+    }
+  )
   purview: Array<RolePurview>
 
   @ApiProperty({

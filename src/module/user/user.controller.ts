@@ -207,4 +207,18 @@ export class UserController {
       }
     }
   }
+
+  @ApiTags("通过邮箱查询用户")
+  @Get("/email/:email")
+  @ApiProperty({
+    name: "email",
+    description: "电子邮箱"
+  })
+  async findEmail(@Param('email') email: string) {
+    const res = await this.userService.findEmail(email);
+    return {
+      user: res,
+      message: "查询成功"
+    }
+  }
 }
