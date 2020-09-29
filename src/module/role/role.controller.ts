@@ -16,6 +16,21 @@ export class RoleController {
       statusCode: 200
     }
   }
+  @Get('/:id')
+  @ApiParam({
+    name: "id",
+    description: "请输入角色ID值"
+  })
+  @ApiTags("查询单独角色")
+  async findId(@Param('id') id: string) {
+    const res = await this.roleService.find(id);
+    return {
+      data: res,
+      message: "success",
+      statusCode: 200
+    }
+  }
+
   @Post()
   @ApiTags("新建角色")
   create(@Body() role: RoleDto) {
