@@ -28,7 +28,7 @@ const aliyunConfig = {
 };
 const emailConfig = {
   useFactory: () => ({
-    transport: 'smtps://1628814161@qq.com:rudurtmhmchscfjd@smtp.qq.com',
+    transport: 'smtps://1628814161@qq.com:rdbnlwjfioahcejf@smtp.qq.com',
     defaults: {
       from: '"nest-modules" <modules@nestjs.com>',
     },

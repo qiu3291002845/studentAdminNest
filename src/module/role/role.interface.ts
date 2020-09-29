@@ -27,8 +27,8 @@ export class RoleDto {
   @ApiProperty({
     required: true,
     description: "角色权限",
-    example: [0, 0, 0]
+    example: [0,0,0]
   })
-  purview: RolePurview[]
+  purview: Array<RolePurview>
 
 }

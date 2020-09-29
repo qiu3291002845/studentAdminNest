@@ -29,8 +29,8 @@ export class Role {
   @ApiProperty({
     description: "角色权限"
   })
-  @prop()
-  purview: RolePurview[]
+  @prop({required:true,type:Number})
+  purview: Array<RolePurview>
 
   @ApiProperty({
     description: '创建日期',

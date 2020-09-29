@@ -83,12 +83,20 @@ export class StudentDto {
   nation: string
 
   @ApiProperty({
-    example: [],
+    example: [{
+		type:1,
+		time:"145165416545",
+		fraction:5,
+		description:"上课回答问题加五分"
+  	}],
   })
   usallyScore: Array<usallyScore>
 
   @ApiProperty({
-    example: [],
+    example: [{
+		quality:66,
+		fullStack:91
+	}],
   })
   professionScore: Array<professionScore>
 }
