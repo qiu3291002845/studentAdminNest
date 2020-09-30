@@ -31,4 +31,10 @@ export class RoleDto {
   })
   purview: Array<RolePurview>
 
+  @ApiProperty({
+    required: true,
+    description: "角色名称",
+    example: "学生",
+  })
+  name: string
 }

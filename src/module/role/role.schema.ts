@@ -11,7 +11,7 @@ enum RolePurview {
 }
 export class Role {
   @ApiProperty({
-    description: "角色名称"
+    description: "角色类型"
   })
   @prop({
     required: true
@@ -43,4 +43,13 @@ export class Role {
   })
   @prop({ default: Date.now() })
   time: string
+
+  @ApiProperty({
+    description: "角色名称",
+    example: "学生"
+  })
+  @prop({
+    required: true,
+  })
+  name: string
 }
