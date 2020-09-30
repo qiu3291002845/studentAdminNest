@@ -6,8 +6,12 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class RoleService {
   constructor(@InjectModel(Role) private readonly Role) { }
-  async find() {
-    return await this.Role.find({});
+  async find(id?) {
+    if (id) {
+      return await this.Role.findOne({ _id: id });
+    } else {
+      return await this.Role.find({});
+    }
   }
   async create(json) {
     await this.Role.create(json);

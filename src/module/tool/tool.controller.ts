@@ -6,7 +6,7 @@ import { ApiProperty, ApiTags } from '@nestjs/swagger';
 export class ToolController {
   constructor(private toolService: ToolService) { }
   @Get('/email/:email')
-  @ApiTags("电子邮箱")
+  @ApiTags("发送电子邮箱")
   @ApiProperty({
     name: "email",
     description: "电子邮箱",
