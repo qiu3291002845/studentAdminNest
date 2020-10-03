@@ -221,4 +221,17 @@ export class UserController {
       message: "查询成功"
     }
   }
+  @ApiTags("通过用户名查询用户")
+  @Get("/username/:username")
+  @ApiProperty({
+    name: "username",
+    description: "用户名"
+  })
+  async findUsername(@Param('username') username: string) {
+    const res = await this.userService.findUsername(username);
+    return {
+      user: res,
+      message: "查询成功"
+    }
+  }
 }
